@@ -1,1 +1,62 @@
-# Parameter file
+# Parameter file for immune neoantigen pipeline
+
+# Input/Output
+input: null                           # Path to input samplesheet (CSV)
+outdir: './results'                   # Output directory
+publish_dir_mode: 'copy'              # How to publish results ('copy', 'symlink', 'move')
+
+# Workflow control
+run_wes: true                         # Run WES workflow (variant calling, HLA typing)
+run_rnaseq: true                      # Run RNA-seq workflow (transcript quantification)
+run_tcr: true                         # Run TCR-seq workflow (clonotype extraction)
+run_neoantigen: true                  # Run neoantigen prediction workflow
+
+# Reference genome
+genome: 'GRCh38'                      # Reference genome version
+fasta: null                           # Path to reference FASTA file
+gtf: null                             # Path to gene annotation GTF file
+igenomes_ignore: false                # Ignore iGenomes configuration
+
+# Variant calling options
+mutect2_extra_args: ''                # Additional arguments for Mutect2
+min_base_quality_score: 20            # Minimum base quality score for variant calling
+
+# RNA-seq options
+salmon_index: null                    # Path to pre-built Salmon index
+salmon_extra_args: ''                 # Additional arguments for Salmon
+
+# TCR-seq options
+mixcr_species: 'hsa'                  # Species for MiXCR analysis (hsa = Homo sapiens)
+mixcr_extra_args: ''                  # Additional arguments for MiXCR
+
+# Neoantigen prediction options
+netmhcpan_version: '4.1'              # NetMHCpan version
+peptide_lengths: '8,9,10,11'          # Peptide lengths to predict (comma-separated)
+binding_threshold: 500                # Binding affinity threshold in nM
+
+# HLA typing options
+optitype_extra_args: ''               # Additional arguments for OptiType
+
+# Quality control
+skip_qc: false                        # Skip quality control steps
+skip_multiqc: false                   # Skip MultiQC report generation
+
+# Resource limits
+max_cpus: 16                          # Maximum number of CPUs
+max_memory: '128.GB'                  # Maximum memory
+max_time: '240.h'                     # Maximum time
+
+# Container options
+singularity_pull_docker_container: false  # Pull Docker containers to Singularity
+enable_conda: false                   # Enable Conda environments
+
+# Validation options
+validate_params: true                 # Validate parameters
+validationFailUnrecognisedParams: false
+validationLenientMode: false
+validationSchemaIgnoreParams: 'genomes'
+validationShowHiddenParams: false
+
+# Help and version
+help: false                           # Show help message
+version: false                        # Show version
