@@ -1,0 +1,167 @@
+digraph "pipeline_dag_20250710_001043" {
+rankdir=TB;
+v0 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v1 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="splitCsv"];
+v0 -> v1;
+
+v1 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="splitCsv"];
+v2 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v1 -> v2;
+
+v2 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v4 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN"];
+v2 -> v4 [label="ch_reads"];
+
+v3 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v3 -> v7 [label="ch_versions"];
+
+v4 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN"];
+v8 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE"];
+v4 -> v8 [label="vdjca"];
+
+v4 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN"];
+v5 [shape=point];
+v4 -> v5 [label="align_reports"];
+
+v4 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN"];
+v6 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v4 -> v6;
+
+v6 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v6 -> v7;
+
+v7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v11 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v7 -> v11 [label="ch_versions"];
+
+v8 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE"];
+v12 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER"];
+v8 -> v12 [label="clns"];
+
+v8 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE"];
+v9 [shape=point];
+v8 -> v9 [label="assemble_reports"];
+
+v8 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE"];
+v10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v8 -> v10;
+
+v10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v11 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v10 -> v11;
+
+v11 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v15 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v11 -> v15 [label="ch_versions"];
+
+v12 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER"];
+v16 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_COLLAPSE"];
+v12 -> v16 [label="clns_filtered"];
+
+v12 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER"];
+v13 [shape=point];
+v12 -> v13 [label="filter_reports"];
+
+v12 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER"];
+v14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v12 -> v14;
+
+v14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v15 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v14 -> v15;
+
+v15 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v19 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v15 -> v19 [label="ch_versions"];
+
+v16 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_COLLAPSE"];
+v20 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES"];
+v16 -> v20 [label="clns_collapsed"];
+
+v16 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_COLLAPSE"];
+v17 [shape=point];
+v16 -> v17;
+
+v16 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_COLLAPSE"];
+v18 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v16 -> v18;
+
+v18 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v19 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v18 -> v19;
+
+v19 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v19 -> v23 [label="ch_versions"];
+
+v20 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES"];
+v21 [shape=point];
+v20 -> v21 [label="clonotypes"];
+
+v20 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES"];
+v24 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v20 -> v24 [label="clonotypes_tsv"];
+
+v20 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES"];
+v22 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v20 -> v22;
+
+v22 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v22 -> v23;
+
+v23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v23 -> v34 [label="ch_versions"];
+
+v24 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v25 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+v24 -> v25;
+
+v25 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+v26 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v25 -> v26;
+
+v26 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v26 -> v27 [label="ch_clonotypes_grouped"];
+
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v32 [shape=point];
+v27 -> v32 [label="diversity"];
+
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v31 [shape=point];
+v27 -> v31 [label="expansion"];
+
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v30 [shape=point];
+v27 -> v30 [label="tracking"];
+
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v29 [shape=point];
+v27 -> v29 [label="plots"];
+
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v28 [shape=point];
+v27 -> v28 [label="report"];
+
+v27 [label="NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS"];
+v33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v27 -> v33;
+
+v33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v33 -> v34;
+
+v34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v35 [shape=point];
+v34 -> v35 [label="versions"];
+
+v36 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v37 [shape=point];
+v36 -> v37 [label="multiqc_report"];
+
+}

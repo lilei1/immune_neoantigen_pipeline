@@ -1,0 +1,24 @@
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Alignment: 0.9%
+Alignment: 11.7%  ETA: 00:01:39
+Alignment: 23.5%  ETA: 00:00:40
+Alignment: 36.1%  ETA: 00:00:26
+Alignment: 47.9%  ETA: 00:00:13
+Alignment: 61.4%  ETA: 00:00:08
+Alignment: 76.8%  ETA: 00:00:03
+Alignment: 90.3%  ETA: 00:00:01
+============= Report ==============
+Analysis time: 37.25s
+Total sequencing reads: 610190
+Successfully aligned reads: 38 (0.01%)
+Alignment failed, no hits (not TCR/IG?): 270909 (44.4%)
+Alignment failed because of absence of J hits: 315933 (51.78%)
+Alignment failed because of low total score: 23310 (3.82%)
+Overlapped: 610190 (100%)
+Overlapped and aligned: 38 (0.01%)
+Alignment-aided overlaps: 0 (0%)
+Overlapped and not aligned: 610152 (99.99%)
+TRA chains: 6 (15.79%)
+TRB chains: 25 (65.79%)
+TRD chains: 6 (15.79%)
+IGH chains: 1 (2.63%)

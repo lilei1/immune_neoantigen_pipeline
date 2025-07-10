@@ -1,0 +1,3 @@
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Unmatched arguments: filter, --min-count, 2, --min-fraction, 0.00001, --report, PATIENT_01_T3_progression_filter.report, PATIENT_01_T3_progression.clns, PATIENT_01_T3_progression_filtered.clns
+Did you mean: filterAlignments or extend or versionInfo?

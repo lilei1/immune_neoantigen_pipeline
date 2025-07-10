@@ -1,0 +1,24 @@
+Alignment: 0.8%
+Alignment: 10.9%  ETA: 00:02:14
+Alignment: 21.7%  ETA: 00:00:38
+Alignment: 33.3%  ETA: 00:00:23
+Alignment: 45%  ETA: 00:00:14
+Alignment: 58.5%  ETA: 00:00:12
+Alignment: 73.7%  ETA: 00:00:05
+Alignment: 84.5%  ETA: 00:00:04
+Alignment: 96.2%  ETA: 00:00:01
+============= Report ==============
+Analysis time: 43.99s
+Total sequencing reads: 708497
+Successfully aligned reads: 82 (0.01%)
+Alignment failed, no hits (not TCR/IG?): 323546 (45.67%)
+Alignment failed because of absence of J hits: 347046 (48.98%)
+Alignment failed because of low total score: 37823 (5.34%)
+Overlapped: 708497 (100%)
+Overlapped and aligned: 82 (0.01%)
+Alignment-aided overlaps: 0 (0%)
+Overlapped and not aligned: 708415 (99.99%)
+TRA chains: 19 (23.17%)
+TRB chains: 52 (63.41%)
+TRD chains: 7 (8.54%)
+IGH chains: 4 (4.88%)

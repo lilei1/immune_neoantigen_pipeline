@@ -1,0 +1,19 @@
+Initialization: progress unknown
+Writing clones: 0%
+============= Report ==============
+Analysis time: 1.72s
+Final clonotype count: 7
+Average number of reads per clonotype: 1
+Reads used in clonotypes, percent of total: 7 (0%)
+Reads used in clonotypes before clustering, percent of total: 7 (0%)
+Number of reads used as a core, percent of used: 7 (100%)
+Mapped low quality reads, percent of used: 0 (0%)
+Reads clustered in PCR error correction, percent of used: 0 (0%)
+Reads pre-clustered due to the similar VJC-lists, percent of used: 0 (0%)
+Reads dropped due to the lack of a clone sequence: 27 (0%)
+Reads dropped due to low quality: 0 (0%)
+Reads dropped due to failed mapping: 0 (0%)
+Reads dropped with low quality clones: 0 (0%)
+Clonotypes eliminated by PCR error correction: 0
+Clonotypes dropped as low quality: 0
+Clonotypes pre-clustered due to the similar VJC-lists: 0

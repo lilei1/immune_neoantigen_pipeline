@@ -1,0 +1,21 @@
+Analysis date: Thu Jul 10 07:01:14 UTC 2025
+Input file(s): /data/test_data_tcr/PATIENT_02_T3_progression_tcr_1.fastq.gz,/data/test_data_tcr/PATIENT_02_T3_progression_tcr_2.fastq.gz
+Output file(s): /data/tcr_analysis_results/PATIENT_02_T3_progression/PATIENT_02_T3_progression.vdjca
+Version: 3.0.3; built=Sun Nov 18 15:48:30 UTC 2018; rev=5281a0f; lib=repseqio.v1.5
+Command line arguments: align -s hsa --report /data/tcr_analysis_results/PATIENT_02_T3_progression/PATIENT_02_T3_progression_align.report /data/test_data_tcr/PATIENT_02_T3_progression_tcr_1.fastq.gz /data/test_data_tcr/PATIENT_02_T3_progression_tcr_2.fastq.gz /data/tcr_analysis_results/PATIENT_02_T3_progression/PATIENT_02_T3_progression.vdjca
+Analysis time: 9.57s
+Total sequencing reads: 708497
+Successfully aligned reads: 94 (0.01%)
+Alignment failed, no hits (not TCR/IG?): 323466 (45.66%)
+Alignment failed because of absence of J hits: 347298 (49.02%)
+Alignment failed because of low total score: 37639 (5.31%)
+Overlapped: 708497 (100%)
+Overlapped and aligned: 94 (0.01%)
+Alignment-aided overlaps: 0 (0%)
+Overlapped and not aligned: 708403 (99.99%)
+TRA chains: 16 (17.02%)
+TRB chains: 65 (69.15%)
+TRD chains: 9 (9.57%)
+IGH chains: 3 (3.19%)
+IGL chains: 1 (1.06%)
+======================================

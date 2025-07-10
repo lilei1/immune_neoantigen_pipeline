@@ -1,0 +1,2 @@
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+/mixcr/mixcr-3.0.3/mixcr: line 175:   188 Killed                  $java -Dmixcr.path=$dir -Dmixcr.command=mixcr -XX:+AggressiveOpts "${javaArgs[@]}" -jar $jar "${mixcrArgs[@]}"

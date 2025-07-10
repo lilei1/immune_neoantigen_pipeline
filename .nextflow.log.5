@@ -1,0 +1,205 @@
+Jul-09 23:18:08.698 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf -profile test,docker
+Jul-09 23:18:08.731 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Jul-09 23:18:08.744 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/lilei/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Jul-09 23:18:08.761 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-09 23:18:08.761 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-09 23:18:08.762 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jul-09 23:18:08.767 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-09 23:18:08.776 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/lilei/Downloads/immune_neoantigen_pipeline/nextflow.config
+Jul-09 23:18:08.778 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/lilei/Downloads/immune_neoantigen_pipeline/nextflow.config
+Jul-09 23:18:08.796 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/lilei/.nextflow/secrets/store.json
+Jul-09 23:18:08.797 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@21ab988f] - activable => nextflow.secret.LocalSecretsProvider@21ab988f
+Jul-09 23:18:08.799 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
+Jul-09 23:18:09.245 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [slurm, debug, shifter, test, mamba, charliecloud, conda, singularity, aws, docker, podman]
+Jul-09 23:18:09.259 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-09 23:18:09.266 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [chaotic_hypatia] DSL2 - revision: 149844d342
+Jul-09 23:18:09.267 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-09 23:18:09.267 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jul-09 23:18:09.293 [main] DEBUG nextflow.Session - Session UUID: 0c36549d-4308-45ad-85ec-71f0df24c8f2
+Jul-09 23:18:09.293 [main] DEBUG nextflow.Session - Run name: chaotic_hypatia
+Jul-09 23:18:09.293 [main] DEBUG nextflow.Session - Executor pool size: 16
+Jul-09 23:18:09.296 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-09 23:18:09.298 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-09 23:18:09.313 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.6 build 5954
+  Created: 01-07-2025 11:27 UTC (04:27 PDT)
+  System: Mac OS X 15.5
+  Runtime: Groovy 4.0.26 on OpenJDK 64-Bit Server VM 21.0.6+9-b895.97
+  Encoding: UTF-8 (UTF-8)
+  Process: 35476@LiLei-M36.local [127.0.0.1]
+  CPUs: 16 - Mem: 48 GB (6.3 GB) - Swap: 5 GB (1.2 GB)
+Jul-09 23:18:09.320 [main] DEBUG nextflow.Session - Work-dir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work [Mac OS X]
+Jul-09 23:18:09.333 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-09 23:18:09.336 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-09 23:18:09.343 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Jul-09 23:18:09.353 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-09 23:18:09.357 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+Jul-09 23:18:09.382 [main] DEBUG nextflow.Session - Session start
+Jul-09 23:18:09.383 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/lilei/Downloads/immune_neoantigen_pipeline/results/pipeline_info/execution_trace_2025-07-09_23-18-09.txt
+Jul-09 23:18:09.385 [main] DEBUG nextflow.Session - Using default localLib path: /Users/lilei/Downloads/immune_neoantigen_pipeline/lib
+Jul-09 23:18:09.386 [main] DEBUG nextflow.Session - Adding to the classpath library: /Users/lilei/Downloads/immune_neoantigen_pipeline/lib
+Jul-09 23:18:09.524 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-09 23:18:10.058 [main] INFO  nextflow.Nextflow - Pipeline: immune_neoantigen_pipeline v1.0.0
+Jul-09 23:18:10.124 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC
+Jul-09 23:18:10.125 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:FASTQC` matches process IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC
+Jul-09 23:18:10.129 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.129 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.132 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-09 23:18:10.135 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=48 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+Jul-09 23:18:10.136 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jul-09 23:18:10.143 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.166 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_single` matches labels `process_single` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX
+Jul-09 23:18:10.171 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.171 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.172 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.176 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_high` matches labels `process_high` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM
+Jul-09 23:18:10.177 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.177 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.177 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.180 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX
+Jul-09 23:18:10.181 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.181 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.182 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.190 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2
+Jul-09 23:18:10.191 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:MUTECT2` matches process IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2
+Jul-09 23:18:10.192 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.192 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.193 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.199 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS
+Jul-09 23:18:10.199 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:FILTERMUTECTCALLS` matches process IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS
+Jul-09 23:18:10.200 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.200 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.200 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.204 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:OPTITYPE
+Jul-09 23:18:10.204 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:OPTITYPE` matches process IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:OPTITYPE
+Jul-09 23:18:10.205 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.205 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.206 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:OPTITYPE': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.211 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS
+Jul-09 23:18:10.212 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.212 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.212 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.218 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC
+Jul-09 23:18:10.219 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:FASTQC` matches process IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC
+Jul-09 23:18:10.219 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.219 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.220 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.224 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX
+Jul-09 23:18:10.225 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:SALMON_INDEX` matches process IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX
+Jul-09 23:18:10.225 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.225 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.225 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.229 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT
+Jul-09 23:18:10.229 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:SALMON_QUANT` matches process IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT
+Jul-09 23:18:10.230 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.230 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.231 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.236 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS
+Jul-09 23:18:10.236 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.236 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.237 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.242 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:FASTQC
+Jul-09 23:18:10.243 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:FASTQC` matches process IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:FASTQC
+Jul-09 23:18:10.244 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.244 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.244 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:FASTQC': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.248 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_high` matches labels `process_high` for process with name IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_ANALYZE
+Jul-09 23:18:10.249 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:MIXCR_ANALYZE` matches process IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_ANALYZE
+Jul-09 23:18:10.250 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.250 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.250 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_ANALYZE': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.253 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_EXPORTCLONES
+Jul-09 23:18:10.254 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:MIXCR_EXPORTCLONES` matches process IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_EXPORTCLONES
+Jul-09 23:18:10.254 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.254 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.255 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_EXPORTCLONES': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.259 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:TRACK_CLONES
+Jul-09 23:18:10.259 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:TRACK_CLONES` matches process IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:TRACK_CLONES
+Jul-09 23:18:10.260 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.260 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.260 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:TRACK_CLONES': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.267 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES
+Jul-09 23:18:10.268 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.268 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.268 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.271 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_high` matches labels `process_high` for process with name IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN
+Jul-09 23:18:10.271 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:NETMHCPAN` matches process IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN
+Jul-09 23:18:10.271 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.271 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.272 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.274 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS
+Jul-09 23:18:10.274 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.274 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.275 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.278 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS
+Jul-09 23:18:10.279 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:18:10.280 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:18:10.280 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS': maxForks=0; fair=false; array=0
+Jul-09 23:18:10.283 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: FASTQC, FILTER_NEOANTIGENS, IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:FASTQC, GENERATE_PEPTIDES, PRIORITIZE_NEOANTIGENS, MULTIQC, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC, MIXCR_EXPORTCLONES, BWA_MEM, SALMON_INDEX, IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX, FILTERMUTECTCALLS, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS, IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS, BWA_INDEX, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2, TRACK_CLONES, PARSE_HLA_TYPES, OPTITYPE, NETMHCPAN, MUTECT2, MERGE_VARIANTS, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX, IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES, IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:TRACK_CLONES, MERGE_TRANSCRIPTS, IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN, IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS, IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS, MIXCR_ANALYZE, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:OPTITYPE, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX, IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_EXPORTCLONES, IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM, CUSTOM_DUMPSOFTWAREVERSIONS, IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT, IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_ANALYZE, SALMON_QUANT, SAMTOOLS_INDEX, IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC
+Jul-09 23:18:10.290 [main] WARN  nextflow.Session - There's no process matching config selector: SAMPLESHEET_CHECK
+Jul-09 23:18:10.290 [main] WARN  nextflow.Session - There's no process matching config selector: NEOANTIGEN_FILTER
+Jul-09 23:18:10.292 [main] DEBUG nextflow.Session - Igniting dataflow network (37)
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:OPTITYPE
+Jul-09 23:18:10.294 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:FASTQC
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_ANALYZE
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:MIXCR_EXPORTCLONES
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:TCR_WORKFLOW:TRACK_CLONES
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS
+Jul-09 23:18:10.295 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS
+Jul-09 23:18:10.296 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_a2a8ecf553678ff4: /Users/lilei/Downloads/immune_neoantigen_pipeline/workflows/tcr_workflow.nf
+  Script_796f98b8be950eb4: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/neoantigen_prediction.nf
+  Script_1577b2e988ae0229: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/rna_quantification.nf
+  Script_308ddae06be8c146: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/tcr_analysis.nf
+  Script_5ee7b87706deaa67: /Users/lilei/Downloads/immune_neoantigen_pipeline/workflows/wes_workflow.nf
+  Script_08366ba8b5bdcd21: /Users/lilei/Downloads/immune_neoantigen_pipeline/main.nf
+  Script_be455ce87231f82c: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/qc.nf
+  Script_6812ef298ec2d6ec: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/hla_typing.nf
+  Script_646b27f5d5cabc81: /Users/lilei/Downloads/immune_neoantigen_pipeline/workflows/neoantigen_workflow.nf
+  Script_53e9387dcb711f87: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/variant_calling.nf
+  Script_6fa14707f57eb8ca: /Users/lilei/Downloads/immune_neoantigen_pipeline/workflows/rnaseq_workflow.nf
+Jul-09 23:18:10.296 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-09 23:18:10.296 [main] DEBUG nextflow.Session - Session await
+Jul-09 23:18:10.796 [Actor Thread 11] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.fasta
+Jul-09 23:18:11.036 [Actor Thread 27] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.fasta
+Jul-09 23:18:11.078 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Copying foreign file https://github.com/nf-core/test-datasets/raw/modules/data/genomics/homo_sapiens/genome/genome.fasta to work dir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/stage-0c36549d-4308-45ad-85ec-71f0df24c8f2/19/fc5e6676b069d98c2e1164185f49d0/genome.fasta
+Jul-09 23:18:11.170 [FileTransfer-1] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.fasta
+Jul-09 23:18:11.319 [Actor Thread 27] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.gtf
+Jul-09 23:18:11.322 [FileTransfer-1] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.fasta
+Jul-09 23:18:11.417 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:18:11.419 [Task submitter] INFO  nextflow.Session - [4f/b3210f] Submitted process > IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX (genome.fasta)
+Jul-09 23:18:11.502 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Copying foreign file https://github.com/nf-core/test-datasets/raw/modules/data/genomics/homo_sapiens/genome/genome.gtf to work dir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/stage-0c36549d-4308-45ad-85ec-71f0df24c8f2/64/c678a1093135369d8c7a2bfa69f4b5/genome.gtf
+Jul-09 23:18:11.532 [FileTransfer-2] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.gtf
+Jul-09 23:18:11.581 [FileTransfer-2] DEBUG n.file.http.XFileSystemProvider - Remote redirect location: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/genome.gtf
+Jul-09 23:18:11.633 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:18:11.633 [Task submitter] INFO  nextflow.Session - [ac/e8205d] Submitted process > IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX (genome.fasta)
+Jul-09 23:18:13.534 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX (genome.fasta); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/ac/e8205d1661f87d842fb3ae933eb3ab]
+Jul-09 23:18:13.534 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-09 23:18:13.543 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-09 23:18:14.205 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX (genome.fasta); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/4f/b3210f89eea9d33270c4f3eefab7fe]
+Jul-09 23:18:14.215 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-09 23:18:14.311 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jul-09 23:18:14.312 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-09 23:18:14.314 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-09 23:18:14.314 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-09 23:18:14.319 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=2s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=3; peakMemory=12 GB; ]
+Jul-09 23:18:14.319 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-09 23:18:14.320 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-09 23:18:14.796 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jul-09 23:18:14.878 [main] WARN  nextflow.dag.GraphvizRenderer - Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+Jul-09 23:18:15.057 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-09 23:18:15.073 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-09 23:18:15.073 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

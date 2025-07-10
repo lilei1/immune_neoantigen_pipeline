@@ -1,0 +1,6 @@
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Alignment: 0.7%
+Alignment: 12.1%  ETA: 00:02:29
+Alignment: 22.9%  ETA: 00:00:46
+/mixcr/mixcr-3.0.3/mixcr: line 175:   188 Killed                  $java -Dmixcr.path=$dir -Dmixcr.command=mixcr -XX:+AggressiveOpts "${javaArgs[@]}" -jar $jar "${mixcrArgs[@]}"
+/Users/lilei/Downloads/immune_neoantigen_pipeline/work/d2/c336d3e8afb8c10ce4fa4a9825d3a1/.command.run: line 28: echo: write error: Broken pipe

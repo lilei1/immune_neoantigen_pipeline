@@ -1,0 +1,220 @@
+Jul-09 23:42:52.357 [main] DEBUG nextflow.cli.Launcher - $> nextflow run run_tcr_longitudinal.nf -profile docker,test_tcr_longitudinal
+Jul-09 23:42:52.389 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Jul-09 23:42:52.399 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/lilei/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Jul-09 23:42:52.413 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-09 23:42:52.414 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-09 23:42:52.415 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jul-09 23:42:52.419 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-09 23:42:52.427 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/lilei/Downloads/immune_neoantigen_pipeline/nextflow.config
+Jul-09 23:42:52.427 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/lilei/Downloads/immune_neoantigen_pipeline/nextflow.config
+Jul-09 23:42:52.443 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/lilei/.nextflow/secrets/store.json
+Jul-09 23:42:52.445 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@57b9e423] - activable => nextflow.secret.LocalSecretsProvider@57b9e423
+Jul-09 23:42:52.447 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `docker,test_tcr_longitudinal`
+Jul-09 23:42:52.833 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [slurm, debug, shifter, test, mamba, charliecloud, conda, test_tcr_longitudinal, singularity, aws, docker, podman]
+Jul-09 23:42:52.847 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-09 23:42:52.853 [main] DEBUG nextflow.cli.CmdRun - Launching `run_tcr_longitudinal.nf` [hungry_koch] DSL2 - revision: 3ca1e60532
+Jul-09 23:42:52.854 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-09 23:42:52.854 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jul-09 23:42:52.874 [main] DEBUG nextflow.Session - Session UUID: 690b48a8-1edf-4c60-8b73-6fdb9582f988
+Jul-09 23:42:52.874 [main] DEBUG nextflow.Session - Run name: hungry_koch
+Jul-09 23:42:52.874 [main] DEBUG nextflow.Session - Executor pool size: 16
+Jul-09 23:42:52.877 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-09 23:42:52.879 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-09 23:42:52.889 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.6 build 5954
+  Created: 01-07-2025 11:27 UTC (04:27 PDT)
+  System: Mac OS X 15.5
+  Runtime: Groovy 4.0.26 on OpenJDK 64-Bit Server VM 21.0.6+9-b895.97
+  Encoding: UTF-8 (UTF-8)
+  Process: 36985@LiLei-M36.local [127.0.0.1]
+  CPUs: 16 - Mem: 48 GB (65.1 MB) - Swap: 5 GB (1.2 GB)
+Jul-09 23:42:52.894 [main] DEBUG nextflow.Session - Work-dir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work [Mac OS X]
+Jul-09 23:42:52.907 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-09 23:42:52.910 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-09 23:42:52.918 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Jul-09 23:42:52.927 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-09 23:42:52.930 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+Jul-09 23:42:52.954 [main] DEBUG nextflow.Session - Session start
+Jul-09 23:42:52.955 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/lilei/Downloads/immune_neoantigen_pipeline/results_tcr_longitudinal/pipeline_info/execution_trace_2025-07-09_23-42-52.txt
+Jul-09 23:42:52.958 [main] DEBUG nextflow.Session - Using default localLib path: /Users/lilei/Downloads/immune_neoantigen_pipeline/lib
+Jul-09 23:42:52.959 [main] DEBUG nextflow.Session - Adding to the classpath library: /Users/lilei/Downloads/immune_neoantigen_pipeline/lib
+Jul-09 23:42:53.033 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-09 23:42:53.037 [main] INFO  nextflow.Nextflow - TCR LONGITUDINAL ANALYSIS PIPELINE
+===================================
+input    : assets/samplesheet_tcr_longitudinal.csv
+outdir   : results_tcr_longitudinal
+
+Jul-09 23:42:53.283 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_high` matches labels `process_high` for process with name NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN
+Jul-09 23:42:53.289 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:42:53.290 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:42:53.292 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-09 23:42:53.294 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=48 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+Jul-09 23:42:53.295 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jul-09 23:42:53.302 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN': maxForks=0; fair=false; array=0
+Jul-09 23:42:53.315 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE
+Jul-09 23:42:53.316 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:42:53.317 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:42:53.317 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE': maxForks=0; fair=false; array=0
+Jul-09 23:42:53.321 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER
+Jul-09 23:42:53.322 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:42:53.322 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:42:53.322 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER': maxForks=0; fair=false; array=0
+Jul-09 23:42:53.326 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES
+Jul-09 23:42:53.326 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:MIXCR_EXPORTCLONES` matches process NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES
+Jul-09 23:42:53.327 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:42:53.327 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:42:53.327 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES': maxForks=0; fair=false; array=0
+Jul-09 23:42:53.334 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_high` matches labels `process_high` for process with name NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS
+Jul-09 23:42:53.336 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-09 23:42:53.336 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-09 23:42:53.336 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS': maxForks=0; fair=false; array=0
+Jul-09 23:42:53.340 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN, MIXCR_ALIGN, MIXCR_FILTER, NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE, NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES, NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER, MIXCR_ASSEMBLE, IMMUNARCH_ANALYSIS, NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS, MIXCR_EXPORTCLONES
+Jul-09 23:42:53.348 [main] WARN  nextflow.Session - There's no process matching config selector: FASTQC
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: MULTIQC
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: MUTECT2
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: SALMON_QUANT
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: MIXCR_ANALYZE -- Did you mean: MIXCR_ALIGN?
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: NETMHCPAN
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: OPTITYPE
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: SAMPLESHEET_CHECK
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: FILTERMUTECTCALLS
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: SALMON_INDEX
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: NEOANTIGEN_FILTER
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: CUSTOM_DUMPSOFTWAREVERSIONS
+Jul-09 23:42:53.349 [main] WARN  nextflow.Session - There's no process matching config selector: TRACK_CLONES
+Jul-09 23:42:53.350 [main] DEBUG nextflow.Session - Igniting dataflow network (8)
+Jul-09 23:42:53.353 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN
+Jul-09 23:42:53.353 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ASSEMBLE
+Jul-09 23:42:53.353 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_FILTER
+Jul-09 23:42:53.353 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_EXPORTCLONES
+Jul-09 23:42:53.353 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:IMMUNARCH_ANALYSIS
+Jul-09 23:42:53.353 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_c91be093284aa940: /Users/lilei/Downloads/immune_neoantigen_pipeline/run_tcr_longitudinal.nf
+  Script_14378b34c085d191: /Users/lilei/Downloads/immune_neoantigen_pipeline/workflows/tcr_longitudinal.nf
+  Script_6fc2ee910f352d3e: /Users/lilei/Downloads/immune_neoantigen_pipeline/modules/tcr_analysis.nf
+Jul-09 23:42:53.353 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-09 23:42:53.353 [main] DEBUG nextflow.Session - Session await
+Jul-09 23:42:53.463 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.464 [Task submitter] INFO  nextflow.Session - [61/f7ee71] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T4_posttreatment)
+Jul-09 23:42:53.469 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.469 [Task submitter] INFO  nextflow.Session - [93/36be31] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T2_cycle3)
+Jul-09 23:42:53.473 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.473 [Task submitter] INFO  nextflow.Session - [d7/2739fc] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T2_cycle3)
+Jul-09 23:42:53.476 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.476 [Task submitter] INFO  nextflow.Session - [0c/8f8399] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T3_progression)
+Jul-09 23:42:53.480 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.480 [Task submitter] INFO  nextflow.Session - [e2/fc38a7] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T1_cycle1)
+Jul-09 23:42:53.483 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.483 [Task submitter] INFO  nextflow.Session - [ff/ad8961] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline)
+Jul-09 23:42:53.486 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.487 [Task submitter] INFO  nextflow.Session - [1a/d65f1a] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)
+Jul-09 23:42:53.490 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:42:53.490 [Task submitter] INFO  nextflow.Session - [50/174bfb] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression)
+Jul-09 23:43:08.150 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1); status: COMPLETED; exit: 137; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/1a/d65f1a8694eb0a3e48aa2022388b0e]
+Jul-09 23:43:08.150 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-09 23:43:08.157 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:43:08.158 [Task submitter] INFO  nextflow.Session - [cd/85f594] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T0_baseline)
+Jul-09 23:43:08.160 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/1a/d65f1a8694eb0a3e48aa2022388b0e
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)` terminated with an error exit status (137)
+Jul-09 23:43:08.167 [TaskFinalizer-1] INFO  nextflow.processor.TaskProcessor - [1a/d65f1a] NOTE: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)` terminated with an error exit status (137) -- Execution is retried (1)
+Jul-09 23:43:08.551 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression); status: COMPLETED; exit: 137; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/50/174bfbcf0133339f818b7fb14eb2fd]
+Jul-09 23:43:08.552 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/50/174bfbcf0133339f818b7fb14eb2fd
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression)` terminated with an error exit status (137)
+Jul-09 23:43:08.552 [TaskFinalizer-2] INFO  nextflow.processor.TaskProcessor - [50/174bfb] NOTE: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression)` terminated with an error exit status (137) -- Execution is retried (1)
+Jul-09 23:43:08.555 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:43:08.555 [Task submitter] INFO  nextflow.Session - [c1/31dfdf] Submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T4_posttreatment)
+Jul-09 23:43:11.436 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline); status: COMPLETED; exit: 137; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/ff/ad8961711b83e0437a4254edf003f7]
+Jul-09 23:43:11.438 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/ff/ad8961711b83e0437a4254edf003f7
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline)` terminated with an error exit status (137)
+Jul-09 23:43:11.439 [TaskFinalizer-3] INFO  nextflow.processor.TaskProcessor - [ff/ad8961] NOTE: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline)` terminated with an error exit status (137) -- Execution is retried (1)
+Jul-09 23:43:11.443 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:43:11.443 [Task submitter] INFO  nextflow.Session - [f2/054f1f] Re-submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)
+Jul-09 23:43:11.725 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T2_cycle3); status: COMPLETED; exit: 137; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/93/36be31ed5dc2737069df9ced3a92ae]
+Jul-09 23:43:11.726 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T2_cycle3); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/93/36be31ed5dc2737069df9ced3a92ae
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T2_cycle3)` terminated with an error exit status (137)
+Jul-09 23:43:11.726 [TaskFinalizer-4] INFO  nextflow.processor.TaskProcessor - [93/36be31] NOTE: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T2_cycle3)` terminated with an error exit status (137) -- Execution is retried (1)
+Jul-09 23:43:11.728 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:43:11.728 [Task submitter] INFO  nextflow.Session - [30/60f172] Re-submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression)
+Jul-09 23:43:13.679 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1); status: COMPLETED; exit: 1; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/f2/054f1f6117ab6a27ac5b514f765597]
+Jul-09 23:43:13.681 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/f2/054f1f6117ab6a27ac5b514f765597
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)` terminated with an error exit status (1)
+Jul-09 23:43:13.684 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-09 23:43:13.684 [Task submitter] INFO  nextflow.Session - [cb/d8e8fe] Re-submitted process > NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline)
+Jul-09 23:43:13.690 [TaskFinalizer-5] ERROR nextflow.processor.TaskProcessor - Error executing process > 'NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)'
+
+Caused by:
+  Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T1_cycle1)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  mixcr align \
+      -s hsa \
+      --report PATIENT_01_T1_cycle1_align.report \
+       \
+      PATIENT_01_T1_cycle1_tcr_1.fastq.gz PATIENT_01_T1_cycle1_tcr_2.fastq.gz \
+      PATIENT_01_T1_cycle1.vdjca
+  
+  cat <<-END_VERSIONS > versions.yml
+  "NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN":
+      mixcr: $(mixcr --version 2>&1 | grep -o 'MiXCR v[0-9.]*' | sed 's/MiXCR v//')
+  END_VERSIONS
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+  Invalid maximum heap size: -Xmx-55m
+  Error: Could not create the Java Virtual Machine.
+  Error: A fatal exception has occurred. Program will exit.
+
+Work dir:
+  /Users/lilei/Downloads/immune_neoantigen_pipeline/work/f2/054f1f6117ab6a27ac5b514f765597
+
+Container:
+  mgibio/mixcr:latest
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+Jul-09 23:43:13.692 [TaskFinalizer-5] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
+Jul-09 23:43:13.699 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression); status: COMPLETED; exit: 1; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/30/60f1720d72f8fa1c49de607979ddb9]
+Jul-09 23:43:13.723 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/30/60f1720d72f8fa1c49de607979ddb9
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T3_progression)` terminated with an error exit status (1)
+Jul-09 23:43:13.727 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-09 23:43:14.405 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T3_progression); status: COMPLETED; exit: 137; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/0c/8f83999abee71b21f464a47c2ecae4]
+Jul-09 23:43:14.407 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T3_progression); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/0c/8f83999abee71b21f464a47c2ecae4
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T3_progression)` terminated with an error exit status (137)
+Jul-09 23:43:14.407 [TaskFinalizer-7] INFO  nextflow.processor.TaskProcessor - [0c/8f8399] NOTE: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T3_progression)` terminated with an error exit status (137) -- Execution is retried (1)
+Jul-09 23:43:21.515 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T1_cycle1); status: COMPLETED; exit: 137; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/e2/fc38a797a8eabcad71d70cc400e910]
+Jul-09 23:43:21.518 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T1_cycle1); work-dir=/Users/lilei/Downloads/immune_neoantigen_pipeline/work/e2/fc38a797a8eabcad71d70cc400e910
+  error [nextflow.exception.ProcessFailedException]: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T1_cycle1)` terminated with an error exit status (137)
+Jul-09 23:43:21.519 [TaskFinalizer-8] INFO  nextflow.processor.TaskProcessor - [e2/fc38a7] NOTE: Process `NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T1_cycle1)` terminated with an error exit status (137) -- Execution is retried (1)
+Jul-09 23:43:43.500 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T4_posttreatment); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/61/f7ee714392bf7a3ada7279b27e83ba]
+Jul-09 23:43:43.524 [TaskFinalizer-9] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-09 23:43:44.839 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T2_cycle3); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/d7/2739fc896a6c4dbde517e490325164]
+Jul-09 23:43:52.320 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_02_T0_baseline); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/cd/85f5948f636b23de14c73e3640f8c8]
+Jul-09 23:43:56.871 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T0_baseline); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/cb/d8e8fe8005f76f295835c37e182872]
+Jul-09 23:44:04.983 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: NFCORE_TCRLONGITUDINAL:TCR_LONGITUDINAL:MIXCR_ALIGN (PATIENT_01_T4_posttreatment); status: COMPLETED; exit: 0; error: -; workDir: /Users/lilei/Downloads/immune_neoantigen_pipeline/work/c1/31dfdf0e3f17f5e3e1a9bfd91c3e54]
+Jul-09 23:44:04.983 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jul-09 23:44:04.984 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-09 23:44:04.988 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-09 23:44:04.988 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-09 23:44:04.992 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=5; failedCount=8; ignoredCount=0; cachedCount=0; pendingCount=3; submittedCount=0; runningCount=0; retriesCount=6; abortedCount=0; succeedDuration=7m 51s; failedDuration=3m 57s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=8; peakCpus=16; peakMemory=48 GB; ]
+Jul-09 23:44:04.992 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-09 23:44:04.992 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-09 23:44:05.536 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jul-09 23:44:05.612 [main] WARN  nextflow.dag.GraphvizRenderer - Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+Jul-09 23:44:05.748 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-09 23:44:05.754 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-09 23:44:05.754 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

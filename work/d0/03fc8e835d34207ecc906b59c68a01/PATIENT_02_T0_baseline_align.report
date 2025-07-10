@@ -1,0 +1,20 @@
+Analysis date: Thu Jul 10 07:11:02 UTC 2025
+Input file(s): PATIENT_02_T0_baseline_tcr_1.fastq.gz,PATIENT_02_T0_baseline_tcr_2.fastq.gz
+Output file(s): PATIENT_02_T0_baseline.vdjca
+Version: 3.0.3; built=Sun Nov 18 15:48:30 UTC 2018; rev=5281a0f; lib=repseqio.v1.5
+Command line arguments: align -s hsa --report PATIENT_02_T0_baseline_align.report PATIENT_02_T0_baseline_tcr_1.fastq.gz PATIENT_02_T0_baseline_tcr_2.fastq.gz PATIENT_02_T0_baseline.vdjca
+Analysis time: 52.39s
+Total sequencing reads: 610190
+Successfully aligned reads: 34 (0.01%)
+Alignment failed, no hits (not TCR/IG?): 270623 (44.35%)
+Alignment failed because of absence of J hits: 315907 (51.77%)
+Alignment failed because of low total score: 23626 (3.87%)
+Overlapped: 610190 (100%)
+Overlapped and aligned: 34 (0.01%)
+Alignment-aided overlaps: 0 (0%)
+Overlapped and not aligned: 610156 (99.99%)
+TRA chains: 6 (17.65%)
+TRB chains: 22 (64.71%)
+TRD chains: 4 (11.76%)
+IGH chains: 2 (5.88%)
+======================================

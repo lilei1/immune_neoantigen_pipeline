@@ -7,7 +7,9 @@ A comprehensive Nextflow pipeline for immune repertoire and neoantigen predictio
 This pipeline provides a modular, reproducible, and scalable solution for:
 - **Variant calling** from WES data using Mutect2
 - **Transcript quantification** from RNA-seq using Salmon
-- **TCR clonotype extraction** from TCR-seq using MiXCR
+- **TCR clonotype extraction** from TCR-seq using MiXCR with filtering and collapsing
+- **TCR longitudinal analysis** with 5-timepoint tracking and diversity metrics
+- **Immunarch integration** for advanced TCR repertoire analysis and visualization
 - **Neoepitope generation** and MHC binding prediction with NetMHCpan
 - **Longitudinal sample tracking** and metadata management
 - **HLA typing** integration across multiple assays
@@ -34,6 +36,11 @@ nextflow run main.nf -profile test,docker
 
 # Run with HLA-enriched test data for full OptiType testing
 nextflow run main.nf -profile test,docker --input assets/samplesheet_hla.csv
+
+# Run TCR longitudinal analysis with plots
+python3 scripts/generate_tcr_longitudinal_data.py
+python3 generate_tcr_plots.py
+open tcr_analysis_results/plots/tcr_longitudinal_summary.pdf
 
 # Run on SLURM cluster
 nextflow run main.nf -profile slurm --input samples.csv --outdir results
@@ -67,15 +74,25 @@ The pipeline expects a CSV file with the following columns:
 - `tcr_1`, `tcr_2`: TCR-seq FASTQ files (if available)
 
 ### Test Data
-The pipeline includes two test datasets:
+The pipeline includes three comprehensive test datasets:
 
 1. **Standard test data** (`assets/samplesheet_test.csv`): Minimal test files for basic pipeline validation
 2. **HLA-enriched test data** (`assets/samplesheet_hla.csv`): Synthetic HLA reads for full OptiType testing
+3. **TCR longitudinal test data** (`assets/samplesheet_tcr_longitudinal.csv`): 5-timepoint TCR analysis with clonal dynamics
 
+#### HLA Test Data
 The HLA-enriched test data contains synthetic reads based on real HLA gene sequences:
 - HLA-A*02:01, HLA-B*07:02, HLA-C*07:01 exon 2 sequences
 - 600+ reads per sample with realistic mutations (1% error rate)
 - Proper paired-end FASTQ format with quality scores
+
+#### TCR Longitudinal Test Data
+The TCR test data provides comprehensive longitudinal analysis capabilities:
+- **5 timepoints**: T0_baseline, T1_cycle1, T2_cycle3, T3_progression, T4_posttreatment
+- **2 patients**: PATIENT_01 and PATIENT_02 with different clonal dynamics
+- **1000 synthetic clones** with realistic V(D)J gene usage
+- **Clonal expansion patterns**: Expanding, contracting, transient, and stable clones
+- **600K+ reads per timepoint** for robust statistical analysis
 
 ### Generating Custom HLA Test Data
 You can generate your own HLA test data using the included script:
@@ -96,6 +113,26 @@ This creates synthetic FASTQ files with:
 - Paired-end reads with proper quality scores
 - Background non-HLA reads to simulate real data
 - Configurable read counts and mutation rates
+
+### Generating TCR Longitudinal Test Data
+You can generate comprehensive TCR longitudinal data for analysis:
+
+```bash
+# Generate TCR test data with 5 timepoints
+python3 scripts/generate_tcr_longitudinal_data.py
+
+# Generate with custom parameters
+python3 -c "
+from scripts.generate_tcr_longitudinal_data import generate_tcr_longitudinal_data
+generate_tcr_longitudinal_data('my_tcr_data', num_clones=2000, reads_per_timepoint=100000)
+"
+```
+
+This creates realistic TCR-seq data with:
+- V(D)J gene segments from real human TCR repertoires
+- Longitudinal clonal dynamics (expansion, contraction, persistence)
+- Realistic CDR3 amino acid and nucleotide sequences
+- Temporal tracking across treatment timepoints
 
 ### Reference Files
 - Human reference genome (GRCh38)
@@ -199,7 +236,20 @@ results/
 │   └── merged/            # Patient-level expression matrices
 ├── tcr/                   # TCR analysis results
 │   ├── mixcr/             # MiXCR clonotype extraction
-│   └── tracking/          # Longitudinal tracking results (planned)
+│   │   ├── align/         # V(D)J alignment results
+│   │   ├── assemble/      # Clonotype assembly results
+│   │   ├── filter/        # Quality-filtered clonotypes
+│   │   └── export/        # Exported clonotype tables
+│   ├── immunarch/         # Immunarch analysis results
+│   │   ├── diversity_metrics.tsv
+│   │   ├── clonal_expansion.tsv
+│   │   ├── longitudinal_tracking.tsv
+│   │   └── immunarch_plots.pdf
+│   ├── plots/             # TCR visualization outputs
+│   │   ├── tcr_longitudinal_summary.pdf
+│   │   ├── tcr_longitudinal_summary.png
+│   │   └── tcr_metrics.csv
+│   └── tracking/          # Longitudinal tracking results
 ├── hla/                   # HLA typing results
 │   └── optitype/          # OptiType HLA calling results
 ├── neoantigens/           # Neoantigen predictions (planned)
@@ -219,7 +269,8 @@ results/
 
 ## Configuration Profiles
 
-- `test`: Small test dataset for validation (uses standard test data)
+- `test`: Standard test profile with minimal test data
+- `test_tcr_longitudinal`: TCR longitudinal analysis with 5 timepoints and comprehensive plots
 - `docker`: Local execution with Docker containers
 - `singularity`: Local execution with Singularity containers
 - `slurm`: SLURM cluster execution
@@ -246,7 +297,74 @@ All dependencies are containerized with ARM64 compatibility. The pipeline uses:
 - MiXCR and OptiType containers were specifically selected for ARM64 compatibility
 - Platform warnings during container execution are normal and do not affect functionality
 
+## TCR Analysis Workflows
+
+The pipeline provides comprehensive TCR (T-cell receptor) analysis capabilities with multiple workflow options:
+
+### 1. Standard TCR Processing
+```bash
+# Basic TCR analysis with MiXCR
+nextflow run main.nf -profile docker --input samplesheet.csv --run_tcr true
+```
+
+### 2. TCR Longitudinal Analysis (5 Timepoints)
+```bash
+# Generate test data
+python3 scripts/generate_tcr_longitudinal_data.py
+
+# Run longitudinal analysis
+nextflow run run_tcr_longitudinal.nf -profile docker,test_tcr_longitudinal
+
+# Or use the standalone workflow
+python3 generate_tcr_plots.py
+```
+
+### 3. Quick Plot Generation
+```bash
+# Install dependencies
+pip install matplotlib seaborn pandas numpy
+
+# Generate plots from existing MiXCR results
+python3 generate_tcr_plots.py
+
+# View results
+open tcr_analysis_results/plots/tcr_longitudinal_summary.pdf
+```
+
+### TCR Analysis Features
+
+**MiXCR Processing Pipeline:**
+- ✅ **Alignment**: V(D)J gene alignment with species-specific references
+- ✅ **Assembly**: Clonotype assembly with consensus building
+- ✅ **Filtering**: Quality-based filtering (min count, min frequency)
+- ✅ **Collapsing**: Similar sequence collapsing (where supported)
+- ✅ **Export**: Multiple output formats (TXT, TSV) for downstream analysis
+
+**Immunarch Integration:**
+- ✅ **Diversity Metrics**: Shannon, Simpson, Chao1, Hill diversity indices
+- ✅ **Clonal Expansion**: Top clone analysis and clonality measures
+- ✅ **Longitudinal Tracking**: Clone persistence across timepoints
+- ✅ **Gene Usage Analysis**: V/J gene usage patterns
+- ✅ **Repertoire Overlap**: Public clonotype identification
+
+**Visualization Outputs:**
+- 📊 **Diversity plots**: Shannon/Simpson diversity over time
+- 📊 **Clonal expansion plots**: Top clone dominance analysis
+- 📊 **Longitudinal tracking**: Clone persistence visualization
+- 📊 **Gene usage plots**: V/J gene distribution analysis
+- 📊 **Summary reports**: HTML and PDF comprehensive reports
+
 ## Recent Improvements
+
+### v2.1 - TCR Longitudinal Analysis & Comprehensive Plotting (2025-07-10)
+
+**🚀 Major Updates:**
+- ✅ **TCR Longitudinal Analysis**: Complete 5-timepoint TCR analysis workflow
+- ✅ **Immunarch Integration**: Advanced TCR repertoire analysis with R immunarch package
+- ✅ **Comprehensive Plotting**: Automated generation of diversity and clonal expansion plots
+- ✅ **MiXCR Enhancement**: Filtering, collapsing, and quality control improvements
+- ✅ **Synthetic TCR Data**: Realistic test data with 1000 clones and temporal dynamics
+- ✅ **Standalone Workflows**: Independent TCR analysis pipelines
 
 ### v2.0 - ARM64 Compatibility & Enhanced Testing (2025-07-10)
 
@@ -286,6 +404,14 @@ WARNING: The requested image's platform (linux/amd64) does not match the detecte
 
 **OptiType "No HLA reads found" Error:**
 - **Solution**: Use HLA-enriched test data: `--input assets/samplesheet_hla.csv`
+
+**MiXCR "Invalid maximum heap size" Error:**
+- **Solution**: Increase Java memory allocation in `conf/base.config`
+- **Alternative**: Run with `export _JAVA_OPTIONS="-Xmx4g"`
+
+**TCR Plot Generation Errors:**
+- **Solution**: Install required packages: `pip install matplotlib seaborn pandas numpy`
+- **Alternative**: Use the simulated data mode in `generate_tcr_plots.py`
 
 **Memory Issues on Large Datasets:**
 - **Solution**: Adjust resource allocations in `conf/base.config`

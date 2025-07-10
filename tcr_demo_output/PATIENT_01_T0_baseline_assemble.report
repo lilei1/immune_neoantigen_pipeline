@@ -1,0 +1,22 @@
+Analysis date: Thu Jul 10 06:53:35 UTC 2025
+Input file(s): /data/tcr_demo_output/PATIENT_01_T0_baseline.vdjca
+Output file(s): /data/tcr_demo_output/PATIENT_01_T0_baseline.clns
+Version: 3.0.3; built=Sun Nov 18 15:48:30 UTC 2018; rev=5281a0f; lib=repseqio.v1.5
+Command line arguments: assemble --report /data/tcr_demo_output/PATIENT_01_T0_baseline_assemble.report /data/tcr_demo_output/PATIENT_01_T0_baseline.vdjca /data/tcr_demo_output/PATIENT_01_T0_baseline.clns
+Analysis time: 961.00ms
+Final clonotype count: 8
+Average number of reads per clonotype: 1.5
+Reads used in clonotypes, percent of total: 12 (0%)
+Reads used in clonotypes before clustering, percent of total: 12 (0%)
+Number of reads used as a core, percent of used: 12 (100%)
+Mapped low quality reads, percent of used: 0 (0%)
+Reads clustered in PCR error correction, percent of used: 0 (0%)
+Reads pre-clustered due to the similar VJC-lists, percent of used: 0 (0%)
+Reads dropped due to the lack of a clone sequence: 26 (0%)
+Reads dropped due to low quality: 0 (0%)
+Reads dropped due to failed mapping: 0 (0%)
+Reads dropped with low quality clones: 0 (0%)
+Clonotypes eliminated by PCR error correction: 0
+Clonotypes dropped as low quality: 0
+Clonotypes pre-clustered due to the similar VJC-lists: 0
+======================================

@@ -1,0 +1,22 @@
+Analysis date: Thu Jul 10 07:00:03 UTC 2025
+Input file(s): /data/tcr_analysis_results/PATIENT_01_T3_progression/PATIENT_01_T3_progression.vdjca
+Output file(s): /data/tcr_analysis_results/PATIENT_01_T3_progression/PATIENT_01_T3_progression.clns
+Version: 3.0.3; built=Sun Nov 18 15:48:30 UTC 2018; rev=5281a0f; lib=repseqio.v1.5
+Command line arguments: assemble --report /data/tcr_analysis_results/PATIENT_01_T3_progression/PATIENT_01_T3_progression_assemble.report /data/tcr_analysis_results/PATIENT_01_T3_progression/PATIENT_01_T3_progression.vdjca /data/tcr_analysis_results/PATIENT_01_T3_progression/PATIENT_01_T3_progression.clns
+Analysis time: 1.04s
+Final clonotype count: 12
+Average number of reads per clonotype: 1.08
+Reads used in clonotypes, percent of total: 13 (0%)
+Reads used in clonotypes before clustering, percent of total: 13 (0%)
+Number of reads used as a core, percent of used: 13 (100%)
+Mapped low quality reads, percent of used: 0 (0%)
+Reads clustered in PCR error correction, percent of used: 0 (0%)
+Reads pre-clustered due to the similar VJC-lists, percent of used: 0 (0%)
+Reads dropped due to the lack of a clone sequence: 69 (0.01%)
+Reads dropped due to low quality: 0 (0%)
+Reads dropped due to failed mapping: 0 (0%)
+Reads dropped with low quality clones: 0 (0%)
+Clonotypes eliminated by PCR error correction: 0
+Clonotypes dropped as low quality: 0
+Clonotypes pre-clustered due to the similar VJC-lists: 0
+======================================

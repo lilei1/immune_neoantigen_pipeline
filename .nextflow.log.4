@@ -1,0 +1,28 @@
+Jul-09 23:38:55.894 [main] DEBUG nextflow.cli.Launcher - $> nextflow run run_tcr_longitudinal.nf -profile docker,test_tcr_longitudinal
+Jul-09 23:38:55.926 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Jul-09 23:38:55.936 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/lilei/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Jul-09 23:38:55.951 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-09 23:38:55.952 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-09 23:38:55.953 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jul-09 23:38:55.957 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-09 23:38:55.964 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/lilei/Downloads/immune_neoantigen_pipeline/nextflow.config
+Jul-09 23:38:55.965 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/lilei/Downloads/immune_neoantigen_pipeline/nextflow.config
+Jul-09 23:38:55.981 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/lilei/.nextflow/secrets/store.json
+Jul-09 23:38:55.982 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@53093491] - activable => nextflow.secret.LocalSecretsProvider@53093491
+Jul-09 23:38:55.984 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `docker,test_tcr_longitudinal`
+Jul-09 23:38:56.389 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [slurm, debug, shifter, test, mamba, charliecloud, conda, singularity, aws, docker, podman]
+Jul-09 23:38:56.396 [main] DEBUG nextflow.cli.Launcher - Operation aborted
+nextflow.exception.AbortOperationException: Unknown configuration profile: 'test_tcr_longitudinal'
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.config.ConfigBuilder.checkValidProfile(ConfigBuilder.groovy:511)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.config.ConfigBuilder.buildConfig0(ConfigBuilder.groovy:386)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.config.ConfigBuilder.buildGivenFiles(ConfigBuilder.groovy:318)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.config.ConfigBuilder.buildConfigObject(ConfigBuilder.groovy:816)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.config.ConfigBuilder.build(ConfigBuilder.groovy:829)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:333)
+	at nextflow.cli.Launcher.run(Launcher.groovy:513)
+	at nextflow.cli.Launcher.main(Launcher.groovy:673)
