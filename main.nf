@@ -55,9 +55,9 @@ workflow IMMUNE_NEOANTIGEN_PIPELINE {
     // Separate samples by data type
     input_samples
         .branch { meta, files ->
-            wes: meta.has_wes
-            rna: meta.has_rna
-            tcr: meta.has_tcr
+            wes: meta.data_type == 'wes'
+            rna: meta.data_type == 'rna'
+            tcr: meta.data_type == 'tcr'
         }
         .set { ch_samples_by_type }
 
@@ -103,7 +103,7 @@ workflow IMMUNE_NEOANTIGEN_PIPELINE {
         NEOANTIGEN_WORKFLOW (
             ch_neoantigen_input
         )
-        ch_neoantigens = NEOANTIGEN_WORKFLOW.out.neoantigens
+        ch_neoantigens = NEOANTIGEN_WORKFLOW.out.prioritized
         ch_versions = ch_versions.mix(NEOANTIGEN_WORKFLOW.out.versions)
         ch_multiqc_files = ch_multiqc_files.mix(NEOANTIGEN_WORKFLOW.out.multiqc_files)
     }
@@ -143,7 +143,7 @@ workflow {
         ch_input = Channel
             .fromPath(params.input)
             .splitCsv(header: true)
-            .map { row ->
+            .flatMap { row ->
                 def meta = [:]
                 meta.id = row.sample_id
                 meta.patient_id = row.patient_id
@@ -156,18 +156,26 @@ workflow {
                 meta.has_rna = row.rna_r1 && row.rna_r2
                 meta.has_tcr = row.tcr_r1 && row.tcr_r2
 
-                def files = []
+                // Create separate entries for each data type
+                def entries = []
+
                 if (meta.has_wes) {
-                    files.addAll([file(row.wes_r1), file(row.wes_r2)])
+                    def wes_meta = meta.clone()
+                    wes_meta.data_type = 'wes'
+                    entries.add([wes_meta, [file(row.wes_r1), file(row.wes_r2)]])
                 }
                 if (meta.has_rna) {
-                    files.addAll([file(row.rna_r1), file(row.rna_r2)])
+                    def rna_meta = meta.clone()
+                    rna_meta.data_type = 'rna'
+                    entries.add([rna_meta, [file(row.rna_r1), file(row.rna_r2)]])
                 }
                 if (meta.has_tcr) {
-                    files.addAll([file(row.tcr_r1), file(row.tcr_r2)])
+                    def tcr_meta = meta.clone()
+                    tcr_meta.data_type = 'tcr'
+                    entries.add([tcr_meta, [file(row.tcr_r1), file(row.tcr_r2)]])
                 }
 
-                return [meta, files]
+                return entries
             }
     } else {
         exit 1, "ERROR: Please provide input samplesheet with --input"

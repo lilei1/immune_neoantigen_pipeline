@@ -1,0 +1,551 @@
+digraph "pipeline_dag_20250709_224220" {
+rankdir=TB;
+v0 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v1 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="splitCsv"];
+v0 -> v1;
+
+v1 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="splitCsv"];
+v2 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="flatMap"];
+v1 -> v2;
+
+v2 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="flatMap"];
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v2 -> v5 [label="input_samples"];
+
+v3 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v54 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v3 -> v54 [label="ch_versions"];
+
+v4 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v55 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v4 -> v55 [label="ch_multiqc_files"];
+
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v6 [shape=point];
+v5 -> v6;
+
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v58 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC"];
+v5 -> v58 [label="ch_reads"];
+
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v15 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC"];
+v5 -> v15 [label="ch_reads"];
+
+v7 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v18 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v7 -> v18 [label="ch_versions"];
+
+v8 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v21 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v8 -> v21 [label="ch_multiqc_files"];
+
+v9 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v9 -> v10;
+
+v10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v22 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX"];
+v10 -> v22 [label="ch_fasta"];
+
+v11 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v12 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v11 -> v12;
+
+v12 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v12 -> v35 [label="ch_fai"];
+
+v13 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v13 -> v14;
+
+v14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v14 -> v35 [label="ch_dict"];
+
+v15 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC"];
+v16 [shape=point];
+v15 -> v16;
+
+v15 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC"];
+v19 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v15 -> v19;
+
+v15 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FASTQC"];
+v17 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v15 -> v17;
+
+v17 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v18 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v17 -> v18;
+
+v18 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v18 -> v23 [label="ch_versions"];
+
+v19 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v20 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+v19 -> v20;
+
+v20 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+v21 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v20 -> v21;
+
+v21 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v55 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v21 -> v55 [label="multiqc_files"];
+
+v22 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX"];
+v24 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM"];
+v22 -> v24;
+
+v22 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_INDEX"];
+v23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v22 -> v23;
+
+v23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v26 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v23 -> v26 [label="ch_versions"];
+
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v24 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM"];
+v5 -> v24 [label="ch_reads"];
+
+v24 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM"];
+v27 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX"];
+v24 -> v27;
+
+v24 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:BWA_MEM"];
+v25 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v24 -> v25;
+
+v25 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v26 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v25 -> v26;
+
+v26 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v29 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v26 -> v29 [label="ch_versions"];
+
+v27 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX"];
+v30 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v27 -> v30;
+
+v27 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:SAMTOOLS_INDEX"];
+v28 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v27 -> v28;
+
+v28 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v29 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v28 -> v29;
+
+v29 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v37 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v29 -> v37 [label="ch_versions"];
+
+v30 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v32 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v30 -> v32;
+
+v30 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v31 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v30 -> v31;
+
+v31 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+v31 -> v33;
+
+v32 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+v32 -> v33;
+
+v33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+v34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v33 -> v34;
+
+v34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v34 -> v35 [label="ch_tumor_normal_pairs"];
+
+v10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v10 -> v35 [label="ch_fasta"];
+
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v38 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v35 -> v38;
+
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v38 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v35 -> v38;
+
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v39 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v35 -> v39;
+
+v35 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MUTECT2"];
+v36 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v35 -> v36;
+
+v36 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v37 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v36 -> v37;
+
+v37 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v44 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v37 -> v44 [label="ch_versions"];
+
+v38 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v39 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v38 -> v39;
+
+v39 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v39 -> v40 [label="ch_mutect2_for_filtering"];
+
+v10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v10 -> v40 [label="ch_fasta"];
+
+v12 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v12 -> v40 [label="ch_fai"];
+
+v14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v14 -> v40 [label="ch_dict"];
+
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v46 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v40 -> v46 [label="variants"];
+
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v42 [shape=point];
+v40 -> v42;
+
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v41 [shape=point];
+v40 -> v41;
+
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v43 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v40 -> v43;
+
+v43 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v44 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v43 -> v44;
+
+v44 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v53 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v44 -> v53 [label="ch_versions"];
+
+v45 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v89 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v45 -> v89 [label="hla_types"];
+
+v46 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v47 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+v46 -> v47;
+
+v47 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+v48 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v47 -> v48;
+
+v48 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v49 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS"];
+v48 -> v49 [label="ch_patient_variants"];
+
+v49 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS"];
+v51 [shape=point];
+v49 -> v51 [label="merged_variants"];
+
+v49 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS"];
+v50 [shape=point];
+v49 -> v50;
+
+v49 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:MERGE_VARIANTS"];
+v52 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v49 -> v52;
+
+v52 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v53 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v52 -> v53;
+
+v53 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v54 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v53 -> v54 [label="versions"];
+
+v54 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v86 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v54 -> v86 [label="ch_versions"];
+
+v55 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v87 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v55 -> v87 [label="ch_multiqc_files"];
+
+v56 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v61 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v56 -> v61 [label="ch_versions"];
+
+v57 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v64 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v57 -> v64 [label="ch_multiqc_files"];
+
+v58 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC"];
+v59 [shape=point];
+v58 -> v59;
+
+v58 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC"];
+v62 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v58 -> v62;
+
+v58 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:FASTQC"];
+v60 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v58 -> v60;
+
+v60 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v61 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v60 -> v61;
+
+v61 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v71 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v61 -> v71 [label="ch_versions"];
+
+v62 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v63 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+v62 -> v63;
+
+v63 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+v64 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v63 -> v64;
+
+v64 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v78 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v64 -> v78 [label="ch_multiqc_files"];
+
+v65 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v66 [shape=point];
+v65 -> v66 [label="ch_salmon_index"];
+
+v67 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v69 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX"];
+v67 -> v69;
+
+v68 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+v69 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX"];
+v68 -> v69;
+
+v69 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX"];
+v72 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v69 -> v72 [label="index"];
+
+v69 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_INDEX"];
+v70 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v69 -> v70;
+
+v70 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v71 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v70 -> v71;
+
+v71 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v75 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v71 -> v75 [label="ch_versions"];
+
+v72 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v73 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT"];
+v72 -> v73;
+
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v73 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT"];
+v5 -> v73 [label="ch_reads"];
+
+v73 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT"];
+v76 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v73 -> v76 [label="transcripts"];
+
+v73 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT"];
+v74 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v73 -> v74;
+
+v74 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v75 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v74 -> v75;
+
+v75 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v85 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v75 -> v85 [label="ch_versions"];
+
+v76 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+v77 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+v76 -> v77;
+
+v77 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+v78 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v77 -> v78;
+
+v78 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v87 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v78 -> v87 [label="multiqc_files"];
+
+v73 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT"];
+v79 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v73 -> v79 [label="transcripts"];
+
+v79 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v80 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+v79 -> v80;
+
+v80 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+v81 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v80 -> v81;
+
+v81 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v82 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS"];
+v81 -> v82 [label="ch_patient_transcripts"];
+
+v82 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS"];
+v83 [shape=point];
+v82 -> v83 [label="merged_transcripts"];
+
+v82 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:MERGE_TRANSCRIPTS"];
+v84 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v82 -> v84;
+
+v84 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v85 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v84 -> v85;
+
+v85 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v86 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v85 -> v86 [label="versions"];
+
+v86 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v109 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v86 -> v109 [label="ch_versions"];
+
+v87 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v111 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v87 -> v111 [label="ch_multiqc_files"];
+
+v40 [label="IMMUNE_NEOANTIGEN_PIPELINE:WES_WORKFLOW:FILTERMUTECTCALLS"];
+v88 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v40 -> v88 [label="variants"];
+
+v73 [label="IMMUNE_NEOANTIGEN_PIPELINE:RNASEQ_WORKFLOW:SALMON_QUANT"];
+v88 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v73 -> v88 [label="transcripts"];
+
+v88 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v89 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v88 -> v89;
+
+v89 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v92 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES"];
+v89 -> v92 [label="ch_input"];
+
+v90 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v95 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v90 -> v95 [label="ch_versions"];
+
+v91 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v111 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v91 -> v111 [label="multiqc_files"];
+
+v92 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES"];
+v96 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN"];
+v92 -> v96 [label="peptides"];
+
+v92 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES"];
+v93 [shape=point];
+v92 -> v93;
+
+v92 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:GENERATE_PEPTIDES"];
+v94 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v92 -> v94;
+
+v94 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v95 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v94 -> v95;
+
+v95 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v98 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v95 -> v98 [label="ch_versions"];
+
+v96 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN"];
+v99 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS"];
+v96 -> v99 [label="predictions"];
+
+v96 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:NETMHCPAN"];
+v97 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v96 -> v97;
+
+v97 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v98 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v97 -> v98;
+
+v98 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v101 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v98 -> v101 [label="ch_versions"];
+
+v99 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS"];
+v103 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v99 -> v103 [label="filtered"];
+
+v99 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:FILTER_NEOANTIGENS"];
+v100 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v99 -> v100;
+
+v100 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v101 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v100 -> v101;
+
+v101 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v108 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v101 -> v108 [label="ch_versions"];
+
+v89 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v102 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v89 -> v102 [label="ch_input"];
+
+v102 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v103 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v102 -> v103;
+
+v103 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v104 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS"];
+v103 -> v104 [label="ch_prioritization_input"];
+
+v104 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS"];
+v106 [shape=point];
+v104 -> v106 [label="neoantigens"];
+
+v104 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS"];
+v105 [shape=point];
+v104 -> v105 [label="summary"];
+
+v104 [label="IMMUNE_NEOANTIGEN_PIPELINE:NEOANTIGEN_WORKFLOW:PRIORITIZE_NEOANTIGENS"];
+v107 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v104 -> v107;
+
+v107 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="first"];
+v108 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v107 -> v108;
+
+v108 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v109 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v108 -> v109 [label="versions"];
+
+v109 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v110 [shape=point];
+v109 -> v110 [label="versions"];
+
+v111 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+v112 [shape=point];
+v111 -> v112 [label="multiqc_files"];
+
+v113 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+v114 [shape=point];
+v113 -> v114 [label="clonotypes"];
+
+}

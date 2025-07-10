@@ -11,7 +11,7 @@ process MIXCR_ANALYZE {
     conda (params.enable_conda ? "bioconda::mixcr=4.3.2" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/mixcr:4.3.2--hdfd78af_0' :
-        'quay.io/biocontainers/mixcr:4.3.2--hdfd78af_0' }"
+        'mgibio/mixcr:latest' }"
 
     input:
     tuple val(meta), path(reads)
@@ -33,8 +33,7 @@ process MIXCR_ANALYZE {
     if (meta.single_end) {
         """
         mixcr analyze shotgun \\
-            --threads $task.cpus \\
-            --species $species \\
+            -s $species \\
             --starting-material rna \\
             --only-productive \\
             --report ${prefix}.report \\
@@ -50,8 +49,7 @@ process MIXCR_ANALYZE {
     } else {
         """
         mixcr analyze shotgun \\
-            --threads $task.cpus \\
-            --species $species \\
+            -s $species \\
             --starting-material rna \\
             --only-productive \\
             --report ${prefix}.report \\
@@ -74,7 +72,7 @@ process MIXCR_EXPORTCLONES {
     conda (params.enable_conda ? "bioconda::mixcr=4.3.2" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/mixcr:4.3.2--hdfd78af_0' :
-        'quay.io/biocontainers/mixcr:4.3.2--hdfd78af_0' }"
+        'mgibio/mixcr:latest' }"
 
     input:
     tuple val(meta), path(clns)

@@ -11,7 +11,7 @@ process OPTITYPE {
     conda (params.enable_conda ? "bioconda::optitype=1.3.5" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/optitype:1.3.5--py39h5371cbf_3':
-        'quay.io/biocontainers/optitype:1.3.5--py39h5371cbf_3' }"
+        'umccr/optitype:latest' }"
 
     input:
     tuple val(meta), path(reads)
@@ -36,11 +36,11 @@ process OPTITYPE {
             $sequencing_type \\
             --prefix $prefix \\
             --outdir . \\
-            $args
+            --verbose $args
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
-            optitype: \$(OptiTypePipeline.py --version 2>&1 | grep -o 'OptiType [0-9.]*' | cut -d' ' -f2)
+            optitype: \$(OptiTypePipeline.py --version 2>&1 | grep -o 'OptiType [0-9.]*' | cut -d' ' -f2 || echo "unknown")
         END_VERSIONS
         """
     } else {
@@ -50,11 +50,11 @@ process OPTITYPE {
             $sequencing_type \\
             --prefix $prefix \\
             --outdir . \\
-            $args
+            --verbose $args
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
-            optitype: \$(OptiTypePipeline.py --version 2>&1 | grep -o 'OptiType [0-9.]*' | cut -d' ' -f2)
+            optitype: \$(OptiTypePipeline.py --version 2>&1 | grep -o 'OptiType [0-9.]*' | cut -d' ' -f2 || echo "unknown")
         END_VERSIONS
         """
     }

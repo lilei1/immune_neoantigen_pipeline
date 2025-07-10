@@ -4,6 +4,110 @@
 ========================================================================================
 */
 
+process BWA_INDEX {
+    tag "$fasta"
+    label 'process_single'
+
+    conda (params.enable_conda ? "bioconda::bwa=0.7.17" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/bwa:0.7.17--hed695b0_7':
+        'quay.io/biocontainers/bwa:0.7.17--hed695b0_7' }"
+
+    input:
+    path fasta
+
+    output:
+    tuple path(fasta), path("*.{amb,ann,bwt,pac,sa}"), emit: index
+    path "versions.yml", emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script:
+    """
+    bwa index $fasta
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        bwa: \$(echo \$(bwa 2>&1) | sed 's/^.*Version: //; s/Contact:.*\$//')
+    END_VERSIONS
+    """
+}
+
+process BWA_MEM {
+    tag "$meta.id"
+    label 'process_high'
+
+    conda (params.enable_conda ? "bioconda::bwa=0.7.17 bioconda::samtools=1.16.1" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40:66ed1b38d280722529bb8a0167b0cf02f8a0b488-0':
+        'quay.io/biocontainers/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40:66ed1b38d280722529bb8a0167b0cf02f8a0b488-0' }"
+
+    input:
+    tuple val(meta), path(reads)
+    tuple path(fasta), path(index)
+
+    output:
+    tuple val(meta), path("*.bam"), emit: bam
+    path "versions.yml", emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def read_group = "@RG\\tID:${meta.id}\\tSM:${meta.id}\\tPL:ILLUMINA"
+    """
+    INDEX=`find -L ./ -name "*.amb" | sed 's/.amb//'`
+
+    bwa mem \\
+        $args \\
+        -t $task.cpus \\
+        -R "$read_group" \\
+        \$INDEX \\
+        ${reads[0]} \\
+        ${reads[1]} \\
+        | samtools sort -@ $task.cpus -o ${prefix}.bam -
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        bwa: \$(echo \$(bwa 2>&1) | sed 's/^.*Version: //; s/Contact:.*\$//')
+        samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
+    END_VERSIONS
+    """
+}
+
+process SAMTOOLS_INDEX {
+    tag "$meta.id"
+    label 'process_low'
+
+    conda (params.enable_conda ? "bioconda::samtools=1.16.1" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/samtools:1.16.1--h6899075_1':
+        'quay.io/biocontainers/samtools:1.16.1--h6899075_1' }"
+
+    input:
+    tuple val(meta), path(bam)
+
+    output:
+    tuple val(meta), path(bam), path("*.bai"), emit: bam_bai
+    path "versions.yml", emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script:
+    """
+    samtools index $bam
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
+    END_VERSIONS
+    """
+}
+
 process MUTECT2 {
     tag "$meta.id"
     label 'process_medium'
@@ -11,10 +115,10 @@ process MUTECT2 {
     conda (params.enable_conda ? "bioconda::gatk4=4.3.0.0" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/gatk4:4.3.0.0--py39hdfd78af_0':
-        'quay.io/biocontainers/gatk4:4.3.0.0--py39hdfd78af_0' }"
+        'broadinstitute/gatk:4.3.0.0' }"
 
     input:
-    tuple val(meta), path(tumor_reads), path(normal_reads)
+    tuple val(meta), path(tumor_bam), path(normal_bam)
     path  fasta
     path  fai
     path  dict
@@ -31,13 +135,11 @@ process MUTECT2 {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def tumor_command = tumor_reads.collect{"--input $it"}.join(' ')
-    def normal_command = normal_reads.collect{"--input $it"}.join(' ')
-    
+
     """
     gatk Mutect2 \\
-        $tumor_command \\
-        $normal_command \\
+        --input $tumor_bam \\
+        --input $normal_bam \\
         --reference $fasta \\
         --output ${prefix}.vcf.gz \\
         --tumor-sample ${meta.tumor_id} \\
@@ -58,7 +160,7 @@ process FILTERMUTECTCALLS {
     conda (params.enable_conda ? "bioconda::gatk4=4.3.0.0" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/gatk4:4.3.0.0--py39hdfd78af_0':
-        'quay.io/biocontainers/gatk4:4.3.0.0--py39hdfd78af_0' }"
+        'broadinstitute/gatk:4.3.0.0' }"
 
     input:
     tuple val(meta), path(vcf), path(tbi), path(stats)

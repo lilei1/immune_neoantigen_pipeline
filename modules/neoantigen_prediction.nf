@@ -124,7 +124,7 @@ process NETMHCPAN {
     conda (params.enable_conda ? "bioconda::netmhcpan=4.1" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/netmhcpan:4.1--hdfd78af_0' :
-        'quay.io/biocontainers/netmhcpan:4.1--hdfd78af_0' }"
+        'huxihao/netmhcpan:latest' }"
 
     input:
     tuple val(meta), path(peptides), path(hla_alleles)
