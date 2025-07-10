@@ -443,7 +443,7 @@ We welcome contributions! Please:
 
 For questions and support:
 - 📋 **Issues**: [GitHub Issues](https://github.com/lilei1/immune_neoantigen_pipeline/issues)
-- 📧 **Contact**: llei@umn.edu
+- 📧 **Contact**: lileichinaus@gmail.com
 - 📖 **Documentation**: See this README and inline code comments
 
 ## License
