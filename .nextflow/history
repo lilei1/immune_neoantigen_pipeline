@@ -1,1 +1,1 @@
-2025-07-09 23:12:22	26.7s	romantic_miescher	ERR	149844d342bb0e09be26ad15288502eb	f45789f5-295c-4b5f-937e-90c3710a6968	nextflow run main.nf -profile test,docker
+2025-07-09 23:18:09	6.1s	chaotic_hypatia	OK	149844d342bb0e09be26ad15288502eb	0c36549d-4308-45ad-85ec-71f0df24c8f2	nextflow run main.nf -profile test,docker

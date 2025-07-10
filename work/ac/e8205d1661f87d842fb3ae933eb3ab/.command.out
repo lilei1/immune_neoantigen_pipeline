@@ -1,0 +1,26 @@
+Threads = 2
+Vertex length = 31
+Hash functions = 5
+Filter size = 2097152
+Capacity = 2
+Files: 
+salmon/ref_k31_fixed.fa
+--------------------------------------------------------------------------------
+Round 0, 0:2097152
+Pass	Filling	Filtering
+1	0	0	
+2	0	0
+True junctions count = 47
+False junctions count = 67
+Hash table size = 114
+Candidate marks count = 193
+--------------------------------------------------------------------------------
+Reallocating bifurcations time: 0
+True marks count: 127
+Edges construction time: 0
+--------------------------------------------------------------------------------
+Distinct junctions = 47
+
+for info, total work write each  : 2.331    total work inram from level 3 : 4.322  total work raw : 25.000 
+Bitarray          214400  bits (100.00 %)   (array + ranks )
+final hash             0  bits (0.00 %) (nb in final hash 0)

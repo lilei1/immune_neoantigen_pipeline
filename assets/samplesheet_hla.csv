@@ -1,0 +1,6 @@
+sample,patient,type,wes_1,wes_2,rnaseq_1,rnaseq_2,tcr_1,tcr_2
+SAMPLE_01_T,PATIENT_01,tumor,test_data_hla/SAMPLE_01_T_wes_1.fastq.gz,test_data_hla/SAMPLE_01_T_wes_2.fastq.gz,test_data/SAMPLE_01_T_rnaseq_1.fastq.gz,test_data/SAMPLE_01_T_rnaseq_2.fastq.gz,test_data/SAMPLE_01_T_tcr_1.fastq.gz,test_data/SAMPLE_01_T_tcr_2.fastq.gz
+SAMPLE_01_N,PATIENT_01,normal,test_data_hla/SAMPLE_01_N_wes_1.fastq.gz,test_data_hla/SAMPLE_01_N_wes_2.fastq.gz,,,
+SAMPLE_02_T,PATIENT_02,tumor,test_data_hla/SAMPLE_02_T_wes_1.fastq.gz,test_data_hla/SAMPLE_02_T_wes_2.fastq.gz,test_data/SAMPLE_02_T_rnaseq_1.fastq.gz,test_data/SAMPLE_02_T_rnaseq_2.fastq.gz,test_data/SAMPLE_02_T_tcr_1.fastq.gz,test_data/SAMPLE_02_T_tcr_2.fastq.gz
+SAMPLE_02_N,PATIENT_02,normal,test_data_hla/SAMPLE_02_N_wes_1.fastq.gz,test_data_hla/SAMPLE_02_N_wes_2.fastq.gz,,,
+SAMPLE_01_cfDNA,PATIENT_01,cfdna,,,,,test_data/SAMPLE_01_cfDNA_tcr_1.fastq.gz,test_data/SAMPLE_01_cfDNA_tcr_2.fastq.gz
