@@ -36,17 +36,21 @@ def check_command_exists(command):
 
 def validate_python_packages():
     """Validate required Python packages"""
-    required_packages = ['pandas', 'numpy', 'biopython']
+    required_packages = [
+        ('pandas', 'pandas'),
+        ('numpy', 'numpy'),
+        ('biopython', 'Bio')  # biopython package imports as Bio
+    ]
     missing_packages = []
-    
-    for package in required_packages:
+
+    for display_name, import_name in required_packages:
         try:
-            __import__(package)
-            print(f"✓ Python package: {package}")
+            __import__(import_name)
+            print(f"✓ Python package: {display_name}")
         except ImportError:
-            print(f"✗ Python package: {package} - NOT FOUND")
-            missing_packages.append(package)
-    
+            print(f"✗ Python package: {display_name} - NOT FOUND")
+            missing_packages.append(display_name)
+
     return len(missing_packages) == 0
 
 def validate_r_packages():
