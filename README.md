@@ -6,11 +6,14 @@ A comprehensive Nextflow pipeline for immune repertoire and neoantigen predictio
 
 This pipeline provides a modular, reproducible, and scalable solution for:
 - **Variant calling** from WES data using Mutect2
+- **VEP variant annotation** with comprehensive consequence prediction
+- **Nonsynonymous mutation filtering** and expression-based validation
 - **Transcript quantification** from RNA-seq using Salmon
 - **TCR clonotype extraction** from TCR-seq using MiXCR with filtering and collapsing
 - **TCR longitudinal analysis** with 5-timepoint tracking and diversity metrics
 - **Immunarch integration** for advanced TCR repertoire analysis and visualization
-- **Neoepitope generation** and MHC binding prediction with NetMHCpan
+- **Neoantigen prediction** with MHC Class I/II peptide generation and NetMHCpan binding prediction
+- **Comprehensive filtering** (IC50 < 500 nM, percentile rank < 2%, expression validation)
 - **Longitudinal sample tracking** and metadata management
 - **HLA typing** integration across multiple assays
 
@@ -41,6 +44,9 @@ nextflow run main.nf -profile test,docker --input assets/samplesheet_hla.csv
 python3 scripts/generate_tcr_longitudinal_data.py
 python3 generate_tcr_plots.py
 open tcr_analysis_results/plots/tcr_longitudinal_summary.pdf
+
+# Run WES-to-neoantigen prediction workflow
+python3 run_wes_neoantigen_demo.py
 
 # Run on SLURM cluster
 nextflow run main.nf -profile slurm --input samples.csv --outdir results
@@ -74,11 +80,12 @@ The pipeline expects a CSV file with the following columns:
 - `tcr_1`, `tcr_2`: TCR-seq FASTQ files (if available)
 
 ### Test Data
-The pipeline includes three comprehensive test datasets:
+The pipeline includes four comprehensive test datasets:
 
 1. **Standard test data** (`assets/samplesheet_test.csv`): Minimal test files for basic pipeline validation
 2. **HLA-enriched test data** (`assets/samplesheet_hla.csv`): Synthetic HLA reads for full OptiType testing
 3. **TCR longitudinal test data** (`assets/samplesheet_tcr_longitudinal.csv`): 5-timepoint TCR analysis with clonal dynamics
+4. **WES neoantigen test data** (`run_wes_neoantigen_demo.py`): Complete variant-to-neoantigen workflow with synthetic data
 
 #### HLA Test Data
 The HLA-enriched test data contains synthetic reads based on real HLA gene sequences:
@@ -93,6 +100,14 @@ The TCR test data provides comprehensive longitudinal analysis capabilities:
 - **1000 synthetic clones** with realistic V(D)J gene usage
 - **Clonal expansion patterns**: Expanding, contracting, transient, and stable clones
 - **600K+ reads per timepoint** for robust statistical analysis
+
+#### WES Neoantigen Test Data
+The WES neoantigen test data provides complete variant-to-neoantigen prediction workflow:
+- **Synthetic VCF files** with VEP annotations for common cancer genes (TP53, KRAS, PIK3CA, etc.)
+- **RNA-seq expression data** in Salmon format with realistic TPM and count values
+- **HLA allele files** with common population alleles for NetMHCpan prediction
+- **30 variants per patient** with missense mutations and protein consequences
+- **Complete workflow demonstration** from variant calling to binding prediction
 
 ### Generating Custom HLA Test Data
 You can generate your own HLA test data using the included script:
@@ -133,6 +148,23 @@ This creates realistic TCR-seq data with:
 - Longitudinal clonal dynamics (expansion, contraction, persistence)
 - Realistic CDR3 amino acid and nucleotide sequences
 - Temporal tracking across treatment timepoints
+
+### Generating WES Neoantigen Test Data
+You can generate comprehensive WES-to-neoantigen test data:
+
+```bash
+# Generate WES neoantigen test data
+python3 scripts/generate_wes_neoantigen_test_data.py
+
+# Run complete workflow demonstration
+python3 run_wes_neoantigen_demo.py
+```
+
+This creates realistic WES neoantigen data with:
+- VEP-annotated VCF files with missense mutations in cancer genes
+- RNA-seq expression data with TPM and count values
+- HLA allele files for NetMHCpan prediction
+- Complete workflow from variant calling to neoantigen prediction
 
 ### Reference Files
 - Human reference genome (GRCh38)
@@ -252,9 +284,24 @@ results/
 │   └── tracking/          # Longitudinal tracking results
 ├── hla/                   # HLA typing results
 │   └── optitype/          # OptiType HLA calling results
-├── neoantigens/           # Neoantigen predictions (planned)
+├── neoantigens/           # Neoantigen prediction results
+│   ├── vep_annotation/    # VEP variant annotation results
+│   │   ├── annotated.vcf.gz
+│   │   ├── vep_summary.html
+│   │   └── vep_report.txt
+│   ├── filtered_variants/ # Filtered variant results
+│   │   ├── nonsynonymous.vcf.gz
+│   │   ├── expressed.vcf.gz
+│   │   ├── filtering_stats.txt
+│   │   └── expression_filter.txt
 │   ├── peptides/          # Generated peptide sequences
+│   │   ├── mutant_proteins.fasta
+│   │   ├── wildtype_proteins.fasta
+│   │   └── mutation_info.tsv
 │   ├── predictions/       # NetMHCpan binding predictions
+│   │   ├── netmhcpan_predictions.tsv
+│   │   ├── binding_summary.tsv
+│   │   └── netmhcpan_reports/
 │   └── prioritized/       # Filtered and ranked neoantigens
 ├── reports/               # Summary reports and visualizations (planned)
 │   ├── clonotype_tracking/ # TCR tracking plots
@@ -271,6 +318,7 @@ results/
 
 - `test`: Standard test profile with minimal test data
 - `test_tcr_longitudinal`: TCR longitudinal analysis with 5 timepoints and comprehensive plots
+- `test_wes_neoantigen`: WES-to-neoantigen prediction workflow with synthetic data
 - `docker`: Local execution with Docker containers
 - `singularity`: Local execution with Singularity containers
 - `slurm`: SLURM cluster execution
@@ -354,7 +402,106 @@ open tcr_analysis_results/plots/tcr_longitudinal_summary.pdf
 - 📊 **Gene usage plots**: V/J gene distribution analysis
 - 📊 **Summary reports**: HTML and PDF comprehensive reports
 
+## WES Neoantigen Prediction Workflows
+
+The pipeline provides a complete WES-to-neoantigen prediction workflow following best practices for cancer immunotherapy research:
+
+### 1. Complete WES-to-Neoantigen Pipeline
+```bash
+# Run complete workflow with real data
+nextflow run workflows/wes_neoantigen.nf \
+  --input samplesheet.csv \
+  --run_neoantigen true \
+  --expression_tpm_threshold 0.2 \
+  --expression_count_threshold 10 \
+  --netmhcpan_ic50_threshold 500 \
+  --netmhcpan_percentile_threshold 2.0
+```
+
+### 2. Demonstration with Synthetic Data
+```bash
+# Generate test data and run complete workflow
+python3 scripts/generate_wes_neoantigen_test_data.py
+python3 run_wes_neoantigen_demo.py
+```
+
+### 3. Individual Module Testing
+```bash
+# Test VEP annotation
+nextflow run modules/variant_annotation.nf --input variants.vcf
+
+# Test neoantigen prediction
+nextflow run modules/neoantigen_prediction.nf --input annotated.vcf
+```
+
+### WES Neoantigen Workflow Features
+
+**Variant Processing Pipeline:**
+- ✅ **Mutect2 Variant Calling**: Somatic mutation detection from tumor/normal pairs
+- ✅ **VEP Annotation**: Comprehensive variant annotation with protein consequences
+- ✅ **Nonsynonymous Filtering**: Retains missense, stop_gained, frameshift, and protein-altering variants
+- ✅ **Expression Cross-checking**: Filters variants in expressed genes (TPM > 0.2 or counts >= 10)
+- ✅ **Quality Control**: Reference validation and comprehensive error handling
+
+**Neoantigen Prediction Pipeline:**
+- ✅ **MHC Class I Peptides**: 8-11-mer peptides with ±10 amino acid window around mutations
+- ✅ **MHC Class II Peptides**: 13-25-mer overlapping peptides for comprehensive coverage
+- ✅ **NetMHCpan Integration**: HLA binding prediction with IC50 and percentile rank scoring
+- ✅ **Binding Classification**: Strong binders (IC50 < 50 nM), weak binders (50-500 nM)
+- ✅ **Multi-HLA Support**: Predictions across multiple HLA alleles per patient
+- ✅ **Comprehensive Output**: Detailed binding predictions and summary statistics
+
+**Filtering and Prioritization:**
+- 🎯 **Expression Validation**: Only variants in expressed genes (TPM > 0.2 or raw counts >= 10)
+- 🎯 **Binding Thresholds**: IC50 < 500 nM and percentile rank < 2% for significance
+- 🎯 **Strong Binder Priority**: IC50 < 50 nM for high-confidence predictions
+- 🎯 **Multi-length Analysis**: Comprehensive peptide length coverage (8-25 mers)
+- 🎯 **HLA-specific Predictions**: Patient-specific HLA allele consideration
+
+### Workflow Comparison
+
+| Feature | TCR Analysis | WES Neoantigen | Combined Pipeline |
+|---------|-------------|----------------|-------------------|
+| **Input Data** | TCR-seq FASTQ | WES VCF + RNA-seq | Both datasets |
+| **Primary Analysis** | Clonotype extraction | Variant annotation | Integrated analysis |
+| **Longitudinal Support** | ✅ 5 timepoints | ✅ Multi-sample | ✅ Full temporal |
+| **Expression Integration** | N/A | ✅ TPM/count filtering | ✅ Cross-validation |
+| **HLA Integration** | Optional | ✅ Required | ✅ Comprehensive |
+| **Output Predictions** | Diversity metrics | Neoantigen binding | TCR + Neoantigen |
+| **Visualization** | ✅ Comprehensive plots | ✅ Binding summaries | ✅ Multi-modal plots |
+| **Test Data** | ✅ Synthetic | ✅ Synthetic | ✅ Both available |
+| **Runtime** | ~30 minutes | ~2 hours | ~3 hours |
+| **Resource Requirements** | Medium | High | High |
+
+### Example Output Files
+
+**TCR Analysis Results:**
+- `tcr_longitudinal_summary.pdf`: Diversity and clonal expansion plots
+- `tcr_metrics.csv`: Quantitative diversity and clonality metrics
+- `immunarch_analysis.html`: Comprehensive repertoire analysis report
+
+**WES Neoantigen Results:**
+- `binding_summary.tsv`: Significant neoantigen candidates (IC50 < 500 nM)
+- `netmhcpan_predictions.tsv`: Complete binding predictions for all peptides
+- `mutation_info.tsv`: Detailed mutation and peptide generation information
+
+**Key Result Interpretation:**
+- **Strong binders (IC50 < 50 nM)**: High-priority candidates for experimental validation
+- **Weak binders (50-500 nM)**: Secondary candidates for further analysis
+- **Expression-validated**: Only variants in expressed genes (TPM > 0.2 or counts >= 10)
+- **Multi-HLA coverage**: Predictions across patient-specific HLA alleles
+
 ## Recent Improvements
+
+### v2.2 - Complete WES-to-Neoantigen Prediction Workflow (2025-07-13)
+
+**🚀 Major Updates:**
+- ✅ **Complete WES-to-Neoantigen Pipeline**: Full workflow from variant calling to binding prediction
+- ✅ **VEP Integration**: Comprehensive variant annotation with protein consequence prediction
+- ✅ **Expression-based Filtering**: Cross-check variants with RNA-seq data (TPM > 0.2, counts >= 10)
+- ✅ **MHC Class I/II Prediction**: 8-11-mer and 13-25-mer peptide generation with NetMHCpan
+- ✅ **Binding Classification**: Strong (IC50 < 50 nM) and weak (50-500 nM) binder identification
+- ✅ **Comprehensive Test Data**: Synthetic VCF, expression, and HLA data for workflow demonstration
 
 ### v2.1 - TCR Longitudinal Analysis & Comprehensive Plotting (2025-07-10)
 
@@ -413,8 +560,63 @@ WARNING: The requested image's platform (linux/amd64) does not match the detecte
 - **Solution**: Install required packages: `pip install matplotlib seaborn pandas numpy`
 - **Alternative**: Use the simulated data mode in `generate_tcr_plots.py`
 
+**VEP "Cache not found" Error:**
+- **Solution**: Download VEP cache or use `--database` mode for online annotation
+- **Alternative**: Use pre-annotated test data with `run_wes_neoantigen_demo.py`
+
+**NetMHCpan "Command not found" Error:**
+- **Solution**: Install NetMHCpan 4.1 or use Docker/Singularity containers
+- **Alternative**: Use simulated predictions in the demonstration workflow
+
+**Expression File Format Errors:**
+- **Solution**: Ensure expression files are in Salmon format with TPM and NumReads columns
+- **Alternative**: Use the synthetic expression data generator
+
 **Memory Issues on Large Datasets:**
 - **Solution**: Adjust resource allocations in `conf/base.config`
+
+## Quick Reference
+
+### WES-to-Neoantigen Workflow Commands
+
+```bash
+# Generate test data
+python3 scripts/generate_wes_neoantigen_test_data.py
+
+# Run complete demonstration
+python3 run_wes_neoantigen_demo.py
+
+# Run with Nextflow (real data)
+nextflow run workflows/wes_neoantigen.nf \
+  --input samplesheet.csv \
+  --run_neoantigen true \
+  --expression_tpm_threshold 0.2 \
+  --netmhcpan_ic50_threshold 500
+
+# Check results
+ls wes_neoantigen_demo_output/
+head -20 wes_neoantigen_demo_output/PATIENT_01_binding_summary.tsv
+```
+
+### Key Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `expression_tpm_threshold` | 0.2 | Minimum TPM for expressed genes |
+| `expression_count_threshold` | 10 | Minimum read count for expressed genes |
+| `netmhcpan_ic50_threshold` | 500 | IC50 threshold (nM) for significant binding |
+| `netmhcpan_percentile_threshold` | 2.0 | Percentile rank threshold for binding |
+| `peptide_window_size` | 10 | Amino acids around mutation for peptide generation |
+
+### Expected Results
+
+For the demonstration workflow with synthetic data:
+- **Input**: 30 variants per patient in cancer genes (TP53, KRAS, PIK3CA, etc.)
+- **After filtering**: ~30 nonsynonymous variants in expressed genes
+- **Peptides generated**: ~120 peptides per patient (8-11 mers)
+- **Predictions**: ~1,080 HLA-peptide binding predictions per patient
+- **Significant binders**: ~90 candidates (IC50 < 500 nM or %Rank < 2%)
+- **Strong binders**: ~5 high-priority candidates (IC50 < 50 nM)
 
 ### Getting Help
 - Check the [Issues](https://github.com/lilei1/immune_neoantigen_pipeline/issues) page for known problems
