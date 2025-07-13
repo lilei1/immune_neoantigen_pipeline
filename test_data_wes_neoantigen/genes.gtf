@@ -1,0 +1,9 @@
+#!genome-build GRCh38
+#!genome-version GRCh38
+#!genome-date 2013-12
+#!genome-build-accession NCBI:GCA_000001405.15
+#!genebuild-last-updated 2013-09
+1	ensembl	gene	11869	14409	.	+	.	gene_id "ENSG00000223972"; gene_version "5"; gene_name "DDX11L1"; gene_source "havana"; gene_biotype "transcribed_unprocessed_pseudogene";
+1	ensembl	transcript	11869	14409	.	+	.	gene_id "ENSG00000223972"; gene_version "5"; transcript_id "ENST00000456328"; transcript_version "2"; gene_name "DDX11L1"; gene_source "havana"; gene_biotype "transcribed_unprocessed_pseudogene"; transcript_name "DDX11L1-202"; transcript_source "havana"; transcript_biotype "processed_transcript";
+17	ensembl	gene	7565097	7590856	.	-	.	gene_id "ENSG00000141510"; gene_version "17"; gene_name "TP53"; gene_source "ensembl_havana"; gene_biotype "protein_coding";
+17	ensembl	transcript	7565097	7590856	.	-	.	gene_id "ENSG00000141510"; gene_version "17"; transcript_id "ENST00000269305"; transcript_version "8"; gene_name "TP53"; gene_source "ensembl_havana"; gene_biotype "protein_coding"; transcript_name "TP53-201"; transcript_source "ensembl_havana"; transcript_biotype "protein_coding";
